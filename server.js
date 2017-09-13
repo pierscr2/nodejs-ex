@@ -2,7 +2,7 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-    
+
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -12,7 +12,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
-
+https://github.com/pierscr2/nodejs-ex.git
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
@@ -23,7 +23,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
-    if (mongoUser && mongoPassword) {
+    if (mongoUser &&https://github.com/pierscr2/nodejs-ex.git mongoPassword) {
       mongoURL += mongoUser + ':' + mongoPassword + '@';
     }
     // Provide UI label that excludes user id and pw
@@ -36,7 +36,7 @@ var db = null,
     dbDetails = new Object();
 
 var initDb = function(callback) {
-  if (mongoURL == null) return;
+  if (mongoURL == nuhttps://github.com/pierscr2/nodejs-ex.gitll) return;
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
@@ -57,21 +57,7 @@ var initDb = function(callback) {
 };
 
 app.get('/', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    var col = db.collection('counts');
-    // Create a document with request IP and current time of request
-    col.insert({ip: req.ip, date: Date.now()});
-    col.count(function(err, count){
-      res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
-    });
-  } else {
-    res.render('index.html', { pageCountMessage : null});
-  }
+  res.end('mah');
 });
 
 app.get('/pagecount', function (req, res) {
