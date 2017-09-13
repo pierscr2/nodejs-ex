@@ -12,7 +12,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
-https://github.com/pierscr2/nodejs-ex.git
+
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
@@ -23,7 +23,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
-    if (mongoUser &&https://github.com/pierscr2/nodejs-ex.git mongoPassword) {
+    if (mongoUser && mongoPassword) {
       mongoURL += mongoUser + ':' + mongoPassword + '@';
     }
     // Provide UI label that excludes user id and pw
@@ -36,7 +36,7 @@ var db = null,
     dbDetails = new Object();
 
 var initDb = function(callback) {
-  if (mongoURL == nuhttps://github.com/pierscr2/nodejs-ex.gitll) return;
+  if (mongoURL == null) return;
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
@@ -57,7 +57,7 @@ var initDb = function(callback) {
 };
 
 app.get('/', function (req, res) {
-  res.end('mah');
+  res.end("hello mondo");
 });
 
 app.get('/pagecount', function (req, res) {
